@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="1050.0" style="-fx-background-color: #02030A;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="gui.AccueilAdminController">
+   <children>
+      <VBox alignment="TOP_CENTER" prefHeight="576.0" prefWidth="256.0" style="-fx-background-color: #05071F;" AnchorPane.bottomAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="username" text="User" textFill="#e7e5e5">
+               <VBox.margin>
+                  <Insets bottom="80.0" top="80.0" />
+               </VBox.margin>
+               <font>
+                  <Font size="26.0" />
+               </font>
+            </Label>
+            <Button fx:id="btnOverview" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Accueil" textFill="#e7e5e5">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Home_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnOrders" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Utilisateurs">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Person_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnAffecter" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#versAffectationVoyage" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Affecter Voyage">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Box_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btntache" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#versUpdateVoyage" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Detail Tache">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Slider__32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+               <Button fx:id="btnTarif" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" onAction="#versAccueilChauffeur" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css" text="Afficher Tache">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Open_Envelope_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+            <Button fx:id="btnSignout" alignment="BASELINE_LEFT" graphicTextGap="22.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="259.0" stylesheets="@style.css">
+               <graphic>
+                  <ImageView fitHeight="23.0" fitWidth="27.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/icons8_Sign_Out_32px.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+               <padding>
+                  <Insets left="50.0" />
+               </padding>
+            </Button>
+         </children>
+      </VBox>
+      
+      <StackPane layoutX="258.0" prefHeight="576.0" prefWidth="793.0" style="-fx-background-color: #02030A;">
+         
+         <children>
+            <Pane fx:id="pnlCustomer" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="pnlOrders" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="pnlMenus" prefHeight="200.0" prefWidth="200.0" />
+            <Pane fx:id="pnlOverview" prefHeight="554.0" prefWidth="793.0">
+                 
+                           <children>
+                  <Label layoutX="57.0" layoutY="25.0" text="Liste des Utilisateurs" textFill="#e7e5e5">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <ScrollPane layoutX="14.0" layoutY="232.0" prefHeight="320.0" prefWidth="746.0" stylesheets="@style.css">
+                     <content>
+                        <VBox fx:id="pnItems" prefHeight="318.0" prefWidth="744.0" spacing="10.0" style="-fx-background-color: #02030A;">
+                           <padding>
+                              <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+                  <Button graphicTextGap="22.0" layoutX="34.0" layoutY="104.0" mnemonicParsing="false" onAction="#ajouterAbonne" prefHeight="42.0" prefWidth="136.0" stylesheets="@style.css" text="Ajouter Abonne" />
+                  <Button graphicTextGap="22.0" layoutX="179.0" layoutY="104.0" mnemonicParsing="false" onAction="#ajouterChauffeur" prefHeight="42.0" prefWidth="136.0" stylesheets="@style.css" text="Ajouter Chauffeur" />
+                  <ComboBox fx:id="listeTypeUser" layoutX="492.0" layoutY="30.0" prefWidth="150.0" />
+                  <Button layoutX="668.0" layoutY="30.0" mnemonicParsing="false" onAction="#afficheUtilisateur" prefHeight="25.0" prefWidth="69.0" stylesheets="@style.css" text="Choisir" />
+                  <Label layoutX="21.0" layoutY="191.0" text="N°" textFill="WHITE" />
+                  <Label layoutX="74.0" layoutY="191.0" text="UserName" textFill="WHITE" />
+                  <Label layoutX="195.0" layoutY="191.0" text="CIN" textFill="#fdfdfd" />
+                  <Label layoutX="289.0" layoutY="191.0" text="Nom" textFill="WHITE" />
+                  <Label layoutX="366.0" layoutY="191.0" text="Prenom" textFill="WHITE" />
+                  <Label layoutX="550.0" layoutY="191.0" text="Action" textFill="WHITE" />
+                  <Button graphicTextGap="22.0" layoutX="329.0" layoutY="104.0" mnemonicParsing="false" onAction="#ajouterChefStation" prefHeight="42.0" prefWidth="136.0" stylesheets="@style.css" text="Ajouter Chef Station" />
+                  <TextField fx:id="recherche" layoutX="576.0" layoutY="113.0" prefHeight="25.0" prefWidth="80.0" />
+                  <Button layoutX="703.0" layoutY="113.0" mnemonicParsing="false" onAction="#onSearchUsers" text="Button" />
+               </children>
+            </Pane>
+         </children>
+      </StackPane>
+   </children>
+   <effect>
+      <DropShadow color="#1b1eeb" />
+   </effect>
+</AnchorPane>

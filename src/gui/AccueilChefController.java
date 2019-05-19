@@ -1,0 +1,150 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package gui;
+
+import Controller.ChauffeurController;
+import Controller.TacheController;
+import Controller.VoyageController;
+import entities.Chauffeur;
+import entities.Tache;
+import entities.Voyage;
+import java.io.IOException;
+import java.net.URL;
+import java.util.List;
+import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
+
+/**
+ * FXML Controller class
+ *
+ * @author Khalil
+ */
+public class AccueilChefController implements Initializable {
+
+    @FXML
+    private Label username;
+    @FXML
+    private Button btnOverview;
+    @FXML
+    private Button btnSettings;
+    @FXML
+    private Button btnTarif;
+    @FXML
+    private Button btnSignout;
+    @FXML
+    private Pane pnlCustomer;
+    @FXML
+    private Pane pnlOrders;
+    @FXML
+    private Pane pnlMenus;
+    @FXML
+    private Pane pnlOverview;
+    @FXML
+    private VBox pnItems;
+
+     ObservableList<String> AllTache = FXCollections.observableArrayList();
+    /**
+     * Initializes the controller class.
+     */
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+         pnItems.getChildren().clear();
+        
+        AllTache.clear();
+       List<Tache> listTache = null;
+       
+         
+       
+              
+        TacheController ac = new TacheController();
+        VoyageController vc = new VoyageController();
+        ChauffeurController cc = new ChauffeurController();
+        
+        listTache = ac.getAllTaches();
+        int i = 1;
+        for (Tache tache : listTache) {
+        
+
+          Voyage  v= vc.getVoyageById(tache.getId_voyage());
+            
+           Chauffeur ch = cc.getChauffeurById(tache.getId_chauffeur());
+            
+             HBox h1 = new HBox();
+             
+             Label espace = new Label("                       ");
+              Label label3 = new Label(String.valueOf(i));
+              i++;
+              label3.setPrefWidth(70);
+                    Label label = new Label(v.getDestination_depart());
+                    label.setPrefWidth(120);
+                    Label label2 = new Label(v.getDestination_arrive());
+                    label2.setPrefWidth(80);
+                    Label label4 = new Label(String.valueOf(v.getHeure_depart()));
+                    label4.setPrefWidth(150);
+                    Label label5 = new Label(String.valueOf(v.getHeure_arrive()));
+                    label5.setPrefWidth(150);
+                  Button delete = new Button("Supprimer");
+                    delete.setOnAction((event) -> {
+                        ac.deleteTache(tache);
+                       pnItems.getChildren().remove(h1);
+                    });
+                    Button update = new Button("Modifier");
+                    update.setOnAction((event) -> {
+                      try {
+                        FXMLLoader Loder = new FXMLLoader();
+                        Loder.setLocation(getClass().getResource("UpdateTache.fxml"));
+                     Loder.load();
+                        UpdateTacheController display = Loder.getController();
+                            System.out.println(tache.getId_voyage());
+                        System.out.println(tache.getId_chauffeur());
+                        display.getVoyageAndChauffeur(tache.getId_voyage(), tache.getId_chauffeur());
+                        Parent AnchorPane = Loder.getRoot();
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                          Scene scene = new Scene(AnchorPane);
+                         stage.setScene(scene);
+                        stage.showAndWait();
+                        } catch (IOException ex) {
+                     
+                 }
+                    });
+                       
+                
+                    h1.getChildren().addAll(label3,label2,label,label4,label5,delete,update);
+            pnItems.getChildren().add(h1);
+        }
+             
+               
+    }    
+      @FXML
+    private void retour(ActionEvent event) throws IOException  {
+        
+         FXMLLoader Loder = new FXMLLoader();
+                        Loder.setLocation(getClass().getResource("AccueilAdmin.fxml"));
+                        Loder.load();
+                      
+                        Parent AnchorPane = Loder.getRoot();
+                        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+                          Scene scene = new Scene(AnchorPane);
+                         stage.setScene(scene);
+                        stage.showAndWait();
+    }
+    
+    
+}
